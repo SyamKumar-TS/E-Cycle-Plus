@@ -1,0 +1,75 @@
+{% extends 'EwasteCollector/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      
+        </style>
+</head>
+<body>
+    <div id="tab">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- <center><h1><i>E-Waste Collection Requests </i></h1></center> -->
+    <table  cellpadding="20px" border="1" align="center" bgcolor="white" >
+        <tr>
+        <th colspan="9"><center><i>E-Waste Collection Requests </i></center></th>    
+        </tr>
+     
+        <tr>
+            <th>Sl.No</th>
+            <th>Date</th>
+            <th>Username</th>
+            <th>Contact</th>
+            <th>Details</th>
+            <th>Collection Point</th>
+            <th colspan="4">Action</th>
+              
+        </tr> 
+       {% for i in data %}
+      
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.ewastebooking.ewastebooking_date}}</td>
+            <td>{{i.ewastebooking.user.user_name}}</td>
+            <td>{{i.ewastebooking.user.user_contact}}</td>
+            <td>{{i.ewastebooking.ewastebooking_details}}</td>
+            <td>{{i.ewastebooking.ewastebooking_collectionpoint}}</td>
+            <td>
+                {% if i.aeb_status == 1 %}
+              
+                <a href="{% url 'webcollector:confewasteb' i.id %}">Confirm</a>
+                <td> <a href="{% url 'webcollector:delewasteb' i.id %}">Reject</a></td>
+                {% else %}
+               
+               <font color="red"> <p>Already Confirmed</p></font>
+                
+                {% endif %}
+            </td>   
+        </tr>
+       
+        {% endfor %}      
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    </div>
+</body>
+</html>
+{% endblock content %}

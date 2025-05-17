@@ -1,0 +1,63 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViewCompletedService</title>
+</head>
+<body>
+    <div id="tab">
+    <!-- <center><h1><i>Completed Services</i></h1></center> -->
+    <table border="1" align="center">
+        <tr>
+            <th colspan="10"><i><center>Completed Services List</center></i></th>
+            </tr>
+        <tr>
+            <th>Sl.No</th>
+            <th>Date</th>
+            <th>User Name</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>Details</th>
+            <th>Given Address</th>
+            <th>Technician</th> 
+            <th>Payment Status</th> 
+            <th colspan="3">Action</th>
+        </tr> 
+       {% for i in res %}
+
+       {% if i.asb_status == 3 %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.servicebooking.Servicebook_date}}</td>
+            <td>{{i.servicebooking.user.user_name}}</td>
+            <td>{{i.servicebooking.category.category_name}}</td>
+            <td>{{i.servicebooking.brand.brand_name}}</td>
+            <td>{{i.servicebooking.Servicebook_details}}</td>
+            <td>{{i.servicebooking.Servicebook_address}}</td>
+            <td>{{i.technician.technician_name}}</td>
+            <td>
+                {% if i.servicebooking.payment_status == 0 %}
+                <p><font color="red"><b><i>Pending</i></b></font></p>
+                {% else %}
+                <p><font color="green"><b><i>Completed</i></b></font></p>
+                {% endif %}
+            </td>
+            {% if i.servicebooking.Servicebook_status == 4 and i.servicebooking.payment_status == 0 %}
+            <td><a href="{% url 'webadmin:alertemail' i.id %}">Alert()</a></td>
+            
+            {% endif %}
+
+           
+        </tr>
+        {% endif %}
+       {% endfor %}      
+    </table>
+    </div>
+</body>
+</html>
+{% endblock content %}

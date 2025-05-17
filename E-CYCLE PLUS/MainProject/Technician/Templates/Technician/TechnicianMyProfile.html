@@ -1,0 +1,66 @@
+{% extends 'Technician/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    <!-- <h1 align="center"><i>Technician My Profile</i></h1> -->
+    <table border="1" align="center" cellpadding="10" style="border-collapse: collapse;">
+        <tr>
+            <th colspan="4"><center><i>My Profile</i></center></th>
+            </tr>
+        <tr>
+            <td align="center" colspan="2"><img src="{{data.technician_photo.url}}" width="150" height="150"  style="border-radius: 75px;"></td>
+            
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>{{data.technician_name}}</td>
+        </tr>
+        <tr>
+            <td>Contact:</td>
+            <td>{{data.technician_contact}}</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>{{data.technician_email}}</td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td>{{data.technician_address}}</td>
+        </tr>
+        <tr>
+            <td>Experience:</td>
+            <td>{{data.technician_experience}}</td>
+        </tr>
+        <tr>
+            <td>Skilled On:</td>
+            <td>{{data.category}}</td>
+        </tr>
+    </table>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+</html>
+{% endblock content %}

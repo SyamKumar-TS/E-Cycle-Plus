@@ -1,0 +1,25 @@
+from django.core.mail import send_mail
+from django.conf import settings
+
+
+
+
+
+
+
+ k
+
+
+
+
+
+
+
+
+
+ send_mail(
+            'Respected Sir/Madam '+name,#subject
+            "\rNo need to worry,you can relogin into your account with your previous password.\nYour previous  password is "+password1  +" and Your Username is "+email2+ " .If you didn't request a password reset feel free to delete this email.\nThank You  \r\n \r\n TheTeam Petpalace.\n ",#body
+            settings.EMAIL_HOST_USER,
+            [email2],
+        )

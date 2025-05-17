@@ -1,0 +1,43 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+    <!-- <center><h1><i>User Complaints</i></h1></center> -->
+    <table border="1" align="center">
+        <tr>
+            <th colspan="10"><i><center>User Complaints</center></i></th>
+            </tr>
+        <tr>
+            <th>Sl.No</th>
+            <th>Date</th>
+            <th>Username</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Technician Name</th>
+            <th>Reply</th>
+        </tr> 
+       {% for i in res %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.complaint_date}}</td>
+            <td>{{i.user.user_name}}</td>
+            <td>{{i.complaint_title}}</td>
+            <td>{{i.complaint_content}}</td>
+            <td>{{i.technician.technician_name}}</td>
+            <td><a href="{% url 'webadmin:compreply' i.id %}">Reply</a></td>
+        </tr>
+       {% endfor %}      
+    </table>
+    </div>
+</body>
+</html>
+{% endblock content %}

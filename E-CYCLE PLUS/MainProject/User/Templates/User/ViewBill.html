@@ -1,0 +1,75 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1 align="center"><i>Your Bill Details</i></h1> -->
+    <div id="tab">
+        <br>
+        <br>
+        <br>
+        <br>
+        
+    <table border="2" align="center" cellpadding="10" style="border-collapse: collapse;">
+        <tr>
+            <th colspan="4"><center>Your Bill Details</center></th>
+            </tr>
+        <tr>
+            <td><b>Service Done Date:</b></td>
+            <td>{{data.servicebill_date}}</td>
+        </tr>
+        <tr>
+            <td><b>Technician Name:</b></td>
+            <td>{{data.assignedservicebooking.technician.technician_name}}</td>
+        </tr>
+        <tr>
+            <td><b>Gadget Category:</b></td>
+            <td>{{data.assignedservicebooking.servicebooking.category.category_name}}</td>
+        </tr>
+        <tr>
+            <td><b>Gadget Brand:</b></td>
+            <td>{{data.assignedservicebooking.servicebooking.brand.brand_name}}</td>
+        </tr>
+        <tr>
+            <td><b>No.Of Days Taken To Completed Service:</b></td>
+            <td>{{data.servicebill_noofdays}} days</td>
+        </tr>
+        <tr>
+            <td><b>Service Details:</b></td>
+            <td>{{data.servicebill_details}}</td>
+        </tr>
+        <tr>
+            <td><b>Additional Details</b></td>
+            <td>{{data.servicebill_additionaldetails}}</td>
+        </tr>
+        <tr>
+            <td><b>Replaced Parts Amount</b></td>
+            <td>{{data.servicebill_partamount}}</td>
+        </tr>
+        <tr>
+            <td><b>Total Amount:</b></td>
+            <td><b><font color="red">{{data.servicebill_amount}}</font></b></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                {% if data.assignedservicebooking.servicebooking.payment_status == 0 %}
+                <p><a href="{% url 'webuser:viewpay' data.id %}">PAY NOW</a></p>
+                {% else %}
+                <p><font color="green"><i><b>Already Paid</b></i></font></p>
+                {% endif %}
+            </td>
+        </tr>
+
+        
+    </table>   
+    </div> 
+</body>
+</html>
+{% endblock content %}

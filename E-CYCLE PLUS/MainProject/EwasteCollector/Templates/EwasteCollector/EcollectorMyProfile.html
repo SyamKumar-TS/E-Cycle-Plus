@@ -1,0 +1,66 @@
+{% extends 'EwasteCollector/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="tab">
+    <!-- <h1 align="center"><i>E-Waste Collector My Profile</i></h1> -->
+    <table border="1" align="center" cellpadding="10" style="border-collapse: collapse;">
+        <tr>
+            <th colspan="5"><center><i>My Profile </i></center></th>    
+            </tr>
+        <tr>
+            <td align="center" colspan="2"><img src="{{data.EwasteCollector_photo.url}}" width="150" height="150"  style="border-radius: 75px;"></td>
+            
+        </tr>
+        <tr>
+            <td><b>Name:</b></td>
+            <td>{{data.EwasteCollector_name}}</td>
+        </tr>
+        <tr>
+            <td><b>Contact:</b></td>
+            <td>{{data.EwasteCollector_contact}}</td>
+        </tr>
+        <tr>
+            <td><b>Email:</b></td>
+            <td>{{data.EwasteCollector_email}}</td>
+        </tr>
+        <tr>
+            <td><b>Vehicle Model Name:</b></td>
+            <td>{{data.EwasteCollector_vehiclemodel}}</td>
+        </tr>
+        <tr>
+            <td><b>Vehicle Registration Number:</b></td>
+            <td>{{data.EwasteCollector_vehicleno}}</td>
+        </tr>
+        <tr>
+            <td><b>Vehicle Image:</b></td>
+            <td><img src="{{data.EwasteCollector_vehicleimg.url}}" width="150" height="150"></td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    </div>
+</body>
+</html>
+{% endblock content %}

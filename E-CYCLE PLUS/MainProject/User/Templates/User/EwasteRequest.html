@@ -1,0 +1,46 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="tab">
+    <form action="" method="POST" >
+        {% csrf_token %}
+    <table border="1" align="center" cellpadding="10" style="border-collapse: collapse;" bgcolor="white">
+        <tr>
+            <th colspan="4" align="center"><i><b><center>Ewaste Collection Request</center></b></i></th>
+        </tr>
+        <tr>
+            <td><b>Details:</b></td>
+            <td><textarea id="txt_details" name="txt_details" required="" autocomplete="off" rows="5" placeholder="Please enter regarding products"></textarea></td>
+        </tr>
+        <tr>
+            <td><b>Collection Point:</b></td>
+            <td><textarea id="txt_collection" name="txt_collection" required="" autocomplete="off" rows="5" placeholder="Please enter the address of the collection point"></textarea></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2"><input type="submit" value="Send">&nbsp&nbsp<input type="reset" value="Cancel"></td>
+        </tr>
+    </form>
+    </div>
+    <script>
+       {% if msg %}
+       alert("{{msg}}")
+       window.location="/User/userhome/" 
+       {% endif %}
+     </script>   
+</body>
+</html>
+{% endblock content %}

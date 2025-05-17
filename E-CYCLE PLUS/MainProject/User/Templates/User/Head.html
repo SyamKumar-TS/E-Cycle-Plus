@@ -1,0 +1,135 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="{% static 'Admin/img/icons/icon-48x48.png' %}" />
+    <title>FYG-USER</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'Main/img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Oswald:wght@600&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'Main/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'Main/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'Main/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'Main/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'form.css' %}" rel="stylesheet">
+</head>
+
+<body style="background-color: white;">
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-secondary navbar-dark sticky-top py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+        <a href="#" class="navbar-brand ms-4 ms-lg-0">
+            <h1 class="mb-0 text-primary text-uppercase"><i class=""></i>E-CYCLE PLUS</h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{%url 'webuser:userhome' %}" class="nav-item nav-link active">Home</a>
+                <a href="#about-section" class="nav-item nav-link active">About Us</a>
+                <a href="{%url 'blog_list' %}" class="nav-item nav-link">Blogs</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a> 
+                    <div class="dropdown-menu m-0">
+                       <a href="{%url 'webuser:userprofile' %}"  class="dropdown-item">My Profile</a>
+                       <a href="{%url 'webuser:useredit' %}" class="dropdown-item">Edit Profile</a>
+                       <a href="{%url 'webuser:userchangepass' %}" class="dropdown-item">Change Password</a>
+                   </div> 
+               </div>
+               <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Service</a> 
+                <div class="dropdown-menu m-0">
+                   <a href="{%url 'webuser:servicebook' %}"  class="dropdown-item">Book Service</a>
+                   <a href="{%url 'webuser:requestedservice' %}"  class="dropdown-item">My Service Requests</a>
+
+               </div> 
+           </div>
+                <div class="nav-item dropdown">
+                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Ewaste Management</a> 
+                     <div class="dropdown-menu m-0">
+                        <a href="{%url 'webuser:userewastereq' %}" class="dropdown-item">Request Ewaste Collection</a>
+                        <a href="{%url 'webuser:viewuserewastereq' %}" class="dropdown-item">My Ewaste Collection Requests</a>
+                      
+                    </div> 
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Interactions</a> 
+                    <div class="dropdown-menu m-0">
+                       <a href="{%url 'webuser:usercomp' %}" class="dropdown-item">Register Complaints</a>
+                       <a href="{%url 'webuser:userfeed' %}" class="dropdown-item">Register Feedback</a>
+                       <a href="{%url 'webuser:product' %}" class="dropdown-item">Products On Store</a>
+                   </div> 
+               </div>
+            </div>
+        <a href="{%url 'webuser:logout' %}" class="btn btn-primary rounded-0 py-2 px-lg-4 d-none d-lg-block"><font style="font-family:Arial, Helvetica, sans-serif;">LOG OUT</font><i class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    {% block content %}
+
+
+
+    {% endblock content %}
+
+
+
+    
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'Main/lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'Main/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'Main/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'Main/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'Main/js/main.js' %}"></script>
+
+    <script type="text/javascript">
+        function disableBack() { window.history.forward(); }
+        setTimeout("disableBack()", 0);
+        window.onunload = function () { null };
+</script>
+
+</body>
+
+</html>

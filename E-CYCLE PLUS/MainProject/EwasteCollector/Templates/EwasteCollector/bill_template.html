@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>E-Waste Collection Bill</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .bill-details {
+            margin-bottom: 20px;
+        }
+        .bill-details table {
+            width: 100%;
+        }
+        .bill-details td {
+            padding: 5px;
+            vertical-align: top;
+        }
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .items-table th, .items-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .items-table th {
+            background-color: #f2f2f2;
+        }
+        .total {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        .signature {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .signature div {
+            width: 45%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">E-CYCLE PLUS</div>
+            <div>E-Waste Collection Receipt</div>
+        </div>
+        
+        <div class="bill-details">
+            <table>
+                <tr>
+                    <td width="50%">
+                        <strong>Bill To:</strong><br>
+                        {{ user.user_name }}<br>
+                        Contact: {{ user.user_contact }}<br>
+                        Collection Address: {{ ewaste_booking.ewastebooking_collectionpoint }}
+                    </td>
+                    <td width="50%">
+                        <strong>Invoice Number:</strong> {{ invoice_number }}<br>
+                        <strong>Date:</strong> {{ date }}<br>
+                        <strong>Yard:</strong> {{ yard.yard_name }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Weight (kg)</th>
+                    <th>Rate (₹/kg)</th>
+                    <th>Amount (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Recyclable E-Waste</td>
+                    <td>{{ collected_ewaste.recyclable_weight }}</td>
+                    <td>{{ collected_ewaste.rate_per_kg }}</td>
+                    <td>{{ collected_ewaste.recyclable_weight|floatformat:2|default:"0" }}</td>
+                </tr>
+                <tr>
+                    <td>Non-Recyclable E-Waste</td>
+                    <td>{{ collected_ewaste.nonrecyclable_weight }}</td>
+                    <td>{{ collected_ewaste.rate_per_kg }}</td>
+                    <td>{{ collected_ewaste.nonrecyclable_weight|floatformat:2|default:"0" }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="total">
+            <p>Total Weight: {{ collected_ewaste.collectedewaste_weight }} kg</p>
+            <p>Total Amount: ₹{{ collected_ewaste.total_amount|floatformat:2 }}</p>
+        </div>
+        
+        <div class="footer">
+            <p>Thank you for contributing to a cleaner environment through responsible e-waste disposal.</p>
+            <p>For any queries related to this bill, please contact us at: info@e-cycleplus.com</p>
+        </div>
+        
+        <div class="signature">
+            <div>
+                <p>_______________________</p>
+                <p>Authorized Signature</p>
+            </div>
+            <div>
+                <p>_______________________</p>
+                <p>Customer Signature</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

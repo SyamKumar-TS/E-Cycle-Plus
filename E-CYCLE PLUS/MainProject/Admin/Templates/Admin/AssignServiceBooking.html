@@ -1,0 +1,55 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+    <form method="post">
+        {% csrf_token %}
+    <h1 align="center"><i>Assign Service</i></h1>
+    <table border="1" align="center" cellpadding="10" style="border-collapse: collapse;">
+        <tr>
+            <td>Appliance Brand:</td>
+            <td>{{data.brand.brand_name}}</td>
+        </tr>
+        <tr>
+            <td>Appliance Details:</td>
+            <td>{{data.Servicebook_details}}</td>
+        </tr>
+        <tr>
+            <td>Appliance Category:</td>
+            <td>{{data.category.category_name}}</td>
+        </tr>
+        <tr>
+            <td>User's Name:</td>
+            <td>{{data.user.user_name}}</td>
+        </tr>
+        <tr>
+            <td>User's Address:</td>
+            <td>{{data.Servicebook_address}}</td>
+        </tr>
+        <tr>
+            <td>Select Technician:</td>
+            <td><select name="ddl_tech" id="tech">
+                <option value="">--SELECT--</option>
+                {% for i in tech %}
+                <option value="{{i.id}}">{{i.technician_name}}</option>
+                {% endfor %}
+                </select></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="submit" name="btn_submit" value="Allocate/Assign"> <input type="reset" name="btn_reset" value="Reset"></td>
+        <tr>
+    </table>
+</form>
+</div>
+</body>
+</html>
+{% endblock content %}

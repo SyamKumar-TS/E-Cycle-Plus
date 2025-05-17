@@ -1,0 +1,100 @@
+{% extends 'Technician/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    <form method="post">
+        {% csrf_token %}
+    <!-- <h1 align="center"><i>Generate Bill</i></h1> -->
+    <table border="1" align="center" cellpadding="10" style="border-collapse: collapse;">
+        <tr>
+            <th colspan="8"><center><i>Generate Bill</i></center></th>
+            </tr>
+        <tr>
+        <tr>
+            <td>User's Name:</td>
+            <td>{{data.servicebooking.user.user_name}}</td>
+        </tr>
+        <tr>
+            <td>Gadget Category:</td>
+            <td>{{data.servicebooking.category.category_name}}</td>
+        </tr>
+        <tr>
+            <td>Gadget Brand:</td>
+            <td>{{data.servicebooking.brand.brand_name}}</td>
+        </tr>
+        <tr>
+            <td>Assumed Issue:</td>
+            <td>{{data.servicebooking.Servicebook_details}}</td>
+        </tr>
+        <tr>
+            <td>Actual Issue:</td>
+            <td><textarea name="txt_issue" placeholder="What was the problem with the device" rows="5" cols="36"></textarea></td>
+        </tr>
+        <tr>
+            <td>Parts Replaced:</td>
+            <td><textarea name="txt_replaced" placeholder="Replaced parts with amount" rows="5" cols="36"></textarea></td>
+        </tr>  
+        <tr>
+            <td>Parts Amount:</td>
+            <td><input type="text" name="txt_parts" id="txt_parts"></td>
+        </tr>
+        <tr>
+            <td>Service Charge Per Day:</td>
+            <td><input type="text" name="txt_charge" id="txt_charge"></td>
+        </tr>
+        <tr>
+            <td>Number of Days To Perform Service:</td>
+            <td><input type="text" name="txt_days" id="txt_days" onkeyup="getAmount()"></td>
+        </tr>
+        <tr>
+            <td>Total Amount</td>
+            <td><input type="text" name="txt_amount" id="txt_total"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2" align="center"><input type="submit" name="btn_submit" value="Generate"> <input type="reset" name="btn_reset" value="Reset"></td>
+        <tr>
+    </table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</form>
+    <script>
+        function getAmount()
+        {
+            var parts = parseInt(document.getElementById("txt_parts").value);
+            var charge = parseInt(document.getElementById("txt_charge").value);
+            var days = parseInt(document.getElementById("txt_days").value);
+
+            var total = (charge*days)+parts;
+            
+
+            document.getElementById("txt_total").value = total;
+        }
+    </script>
+    </div>
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,100 @@
+{% extends 'admin/Head.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h4>{% if blog %}Edit{% else %}Create{% endif %} Blog Post</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                    {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <div class="mb-3">
+                    <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+                    {{ form.title }}
+                    {% if form.title.errors %}
+                    <div class="text-danger">
+                        {% for error in form.title.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="{{ form.subtitle.id_for_label }}" class="form-label">Subtitle</label>
+                    {{ form.subtitle }}
+                    {% if form.subtitle.errors %}
+                    <div class="text-danger">
+                        {% for error in form.subtitle.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="{{ form.content.id_for_label }}" class="form-label">Content</label>
+                    {{ form.content }}
+                    {% if form.content.errors %}
+                    <div class="text-danger">
+                        {% for error in form.content.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="{{ form.image.id_for_label }}" class="form-label">Featured Image</label>
+                    {{ form.image }}
+                    {% if form.image.errors %}
+                    <div class="text-danger">
+                        {% for error in form.image.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if blog and blog.image %}
+                    <div class="mt-2">
+                        <img src="{{ blog.image.url }}" alt="Current image" class="img-thumbnail" style="max-height: 200px;">
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'admin_blog_list' %}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-success">Save Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- If you want to add a rich text editor for the content field -->
+<script src="https://cdn.tiny.cloud/1/YOUR_TINY_MCE_KEY/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+  tinymce.init({
+    selector: '#{{ form.content.id_for_label }}',
+    height: 400,
+    plugins: [
+      'advlist autolink lists link image charmap print preview anchor',
+      'searchreplace visualblocks code fullscreen',
+      'insertdatetime media table paste code help wordcount'
+    ],
+    toolbar: 'undo redo | formatselect | bold italic backcolor | \
+      alignleft aligncenter alignright alignjustify | \
+      bullist numlist outdent indent | removeformat | help'
+  });
+</script>
+{% endblock %}

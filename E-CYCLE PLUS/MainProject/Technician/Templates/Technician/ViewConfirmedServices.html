@@ -1,0 +1,65 @@
+{% extends 'Technician/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    <!-- <center><h1><i>Confirmed Services</i></h1></center> -->
+    <table border="1" align="center">
+        <tr>
+            <th colspan="8"><center><i>Confirmed Services</i></center></th>
+            </tr>
+        <tr>
+            <th>Sl.No</th>
+            <th>Brand</th>
+            <th>Category</th>
+            <th>Details</th>
+            <th>Username</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr> 
+       {% for i in res %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.servicebooking.brand.brand_name}}</td>
+            <td>{{i.servicebooking.category.category_name}}</td>
+            <td>{{i.servicebooking.Servicebook_details}}</td>
+            <td>{{i.servicebooking.user.user_name}}</td>
+            <td>{{i.servicebooking.Servicebook_address}}</td> 
+
+            <td>
+                {% if i.asb_status == 2 %}
+                <a href="{% url 'technician:servbill' i.id %}">Proceed To Complete</a>
+                {% else %}
+                <p><font color="red"><b><i>Already Completed</i></b></font></p>
+                {% endif %}
+            </td>    
+        </tr>
+        {% endfor %}    
+    </table>
+    </div>
+    <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>
+{% endblock content %}

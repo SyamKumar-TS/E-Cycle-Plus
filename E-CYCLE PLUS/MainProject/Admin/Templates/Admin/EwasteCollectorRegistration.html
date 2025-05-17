@@ -1,0 +1,111 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+       
+    <br>
+    <br>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    <table border="1" align="center">
+        <tr>
+            <th colspan="2"><i><b>Ewaste Collector Registration</b></i></th>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" name="txt_name" required="required"></td>
+        </tr>  
+        <tr>
+            <td>Contact:</td>
+            <td><input type="text" name="txt_num" required="required"></td>
+        </tr>  
+        <tr>
+            <td>Email:</td>
+            <td><input type="email" name="txt_email" required="required"></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="txt_pass" required="required"></td>   
+        </tr>  
+        <tr>
+            <td>Photo:</td>
+            <td><input type="file" name="file_photo" required="required"></td>
+        </tr>  
+        <tr>
+            <td>Driving Licence:</td>
+            <td><input type="file" name="file_lphoto" required="required"></td>
+        </tr>  
+      
+        <tr>
+            <td>Vehicle Number:</td>
+            <td><input type="text" name="txt_vnumber" required="required"></td>
+        </tr> 
+        <tr>
+            <td>Vehicle Modelname:</td>
+            <td><input type="text" name="txt_vname" required="required"></td>
+        </tr> 
+        <tr>
+            <td>Vehicle Image:</td>
+            <td><input type="file" name="file_vphoto" required="required"></td>
+        </tr> 
+        <tr>
+            <td colspan="2"><center><input type="submit" name="btn_submit">&nbsp;&nbsp;<input type="reset" name="btn_cancel" value="Cancel"></center></td>
+        </tr>  
+    </table>
+    <br>
+    <br>
+    <br>
+    <table border="1" align="center">
+        <tr><th colspan="10"><i><center>Ewaste Collectors</center></i></th></tr>
+        <tr>
+            <th>Sl No</th>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Photo</th>
+            <th>Driving Licence</th>
+            <th>Vehicle Number</th>
+            <th>Vehicle Modelname</th>
+            <th>Vehicle Image</th>
+            <th>Action</th>
+        <tr>
+        {% for i in result %}    
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.EwasteCollector_name}}</td>
+            <td>{{i.EwasteCollector_contact}}</td>
+            <td>{{i.EwasteCollector_email}}</td>
+            <td><img src="{{i.EwasteCollector_photo.url}}" width="150" height="150"></td>
+            <td><img src="{{i.EwasteCollector_proof.url}}" width="150" height="150"></td>
+            <td>{{i.EwasteCollector_vehicleno}}</td>
+            <td>{{i.EwasteCollector_vehiclemodel}}</td>
+            <td><img src="{{i.EwasteCollector_vehicleimg.url}}" width="150" height="150"></td>
+            <td><a href="{% url 'webadmin:delewastec' i.id %}">Delete</a></td> 
+        </tr> 
+        {% endfor %}      
+        </table>
+    </form>    
+    </div>
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br>
+    <script>
+        {% if msg %}
+        alert("{{msg}}")
+        // window.location="" 
+        {% endif %}
+      </script>  
+</body>
+</html>
+{% endblock content %}

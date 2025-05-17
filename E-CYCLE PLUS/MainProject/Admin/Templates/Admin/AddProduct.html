@@ -1,0 +1,50 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+    <form method="post" id="RegFormTech"  enctype="multipart/form-data">
+        {% csrf_token %}
+    <table border="1" align="center">
+        <tr>
+            <th colspan="2">Add Product</th>
+        </tr>
+        <tr>
+            <td>Product Name:</td>
+            <td><input type="text" name="txt_pname"></td>
+        </tr> 
+        <tr>
+            <td>Product Description:</td>
+            <td><textarea name="txt_pdescp" placeholder="Product Details Here" rows="4" cols="30"></textarea></td>
+        </tr> 
+        <tr>
+            <td>Product Image:</td>
+            <td><input type="file" name="file_photo"></td>
+        </tr>  
+        <tr>
+            <td>Product Type :</td>
+            <td><select name="ddl_type" >
+                <option value="">--SELECT--</option>
+                {% for i in typ %}
+                <option value="{{i.id}}">{{i.type_name}}</option>
+                {% endfor %}
+                </select></td>
+        </tr> 
+     
+        <tr>
+            <td colspan="2"><center><input type="submit" name="btn_submit">&nbsp;&nbsp;<input type="reset" name="btn_cancel" value="Cancel"></center></td>
+        </tr>  
+    </table>
+    </form>   
+    </div> 
+</body>
+</html>
+{% endblock content %}

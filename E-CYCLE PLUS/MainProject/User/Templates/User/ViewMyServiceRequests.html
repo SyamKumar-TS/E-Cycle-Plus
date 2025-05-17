@@ -1,0 +1,84 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <style>
+        .collapsetable{
+        border-collapse: collapse;
+        border: 10px solid rgb(10, 10, 13);
+        }
+        </style> -->
+</head>
+<body>
+    <div id="tab">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- <center><h1><i>Your Requested Service</i></h1></center> -->
+    <table  cellpadding="20px" align="center" bgcolor="white" >
+        <tr>
+            <th colspan="10"><i><b><center>Your Requested Services</center></b></i></th>
+        </tr>
+        <tr>
+            <th>Sl.No</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>Details</th>
+            <th>Given Address</th>
+            <th>Service Status</th>
+            <th>Payment Status</th>
+            <th colspan="3">Action</th>
+              
+        </tr> 
+       {% for i in res %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.Servicebook_date}}</td>
+            <td>{{i.category.category_name}}</td>
+            <td>{{i.brand.brand_name}}</td>
+            <td>{{i.Servicebook_details}}</td>
+            <td>{{i.Servicebook_address}}</td>
+            <td>
+                {% if i.Servicebook_status == 0 %}
+                <p><font color="red"><b><i>Not Accepted</i></b></font></p>
+                {% elif i.Servicebook_status == 1 %}
+                <p><font color="blue"><b><i>Accepted</i></b></font></p>
+                {% elif i.Servicebook_status == 2 %}
+                <p><font color="red"><b><i>Rejected</i></b></font></p>
+                {% elif i.Servicebook_status == 3 %}
+                <p><font color="blue"><b><i>Assigned To Technician</i></b></font></p>
+                {% else %}
+                <p><b><i><font color="green">Completed</font></i></b></p>
+                {% endif %}
+            </td>
+            <td>
+                {% if i.payment_status == 0 %}
+                <p><font color="red"><b><i>Pending</i></b></font></p>
+                {% else %}
+                <p><font color="green"><b><i>Completed</i></b></font></p>
+                {% endif %}
+            </td>
+            {% if i.Servicebook_status == 4 %}
+            <td><a href="{% url 'webuser:viewbill' i.id %}">View Bill</a></td>
+            {% endif %}
+
+            {% if i.Servicebook_status == 4 and i.payment_status == 1 %}
+            <td><a href="{% url 'webuser:delservice' i.id %}">Delete</a></td>
+            {% endif %}
+        
+        </tr>
+       {% endfor %}      
+    </table>
+    </div>
+</body>
+</html>
+{% endblock content %}

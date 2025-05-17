@@ -1,0 +1,29 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+    <h1 align="center"><i>Give your reply</i></h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+    <table border="1" align="center" cellpadding="10" style="border-collapse: collapse;">
+        <tr>
+            <td>Reply:</td>
+            <td><textarea id="txt_reply" name="txt_reply" rows="4" cols="50" required="" autocomplete="off" placeholder="Give reply"></textarea></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2"><input type="submit" value="Save & Send">&nbsp&nbsp<input type="reset" value="Cancel"></td>
+        </tr>
+    </form>
+    </div>
+</body>
+</html>
+{% endblock content %}

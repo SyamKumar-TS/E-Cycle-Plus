@@ -1,0 +1,37 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+    <!-- <center><h1><i>User Feedbacks</i></h1></center> -->
+    <table border="1" align="center">
+        <tr>
+            <th colspan="10"><i><center>User Feedbacks</center></i></th>
+            </tr>
+        <tr>
+            <th>Sl.No</th>
+            <th>Username</th>
+            <th>Feedback</th>
+            <th>Action</th>
+        </tr> 
+       {% for i in res %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.user.user_name}}</td>
+            <td>{{i.feedback_content}}</td>
+            <td><a href="{% url 'webadmin:delfeed' i.id %}">Delete</a></td>
+        </tr>
+       {% endfor %}      
+    </table>
+    </div>
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,86 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <style>
+        .collapsetable{
+        border-collapse: collapse;
+        border: 10px solid rgb(10, 10, 13);
+        }
+        </style> -->
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<div id="tab">
+    <form action="" method="POST" >
+        {% csrf_token %}
+    <table border="1" align="center" cellpadding="10" style="border-collapse: collapse;" bgcolor="white">
+        <tr>
+            <th colspan="2" align="center"><i><b><center>User Complaints</center></b></i></th>
+        </tr>
+        <tr>
+            <td>Complaint Title:</td>
+            <td><input type="text" name="txt_complaint"></td>
+        </tr>
+        <tr>
+            <td>Technician:</td>
+            <td><select name="ddl_tech" id="techn">
+                <option value="">--SELECT--</option>
+                {% for i in tech %}
+                <option value="{{i.id}}">{{i.technician_name}}</option>
+                {% endfor %}
+                </select></td>
+        </tr>
+        <tr>
+            <td>Content:</td>
+            <td><textarea id="txt_content" name="txt_content" required="" autocomplete="off" placeholder="Enter complaint description" rows="5" cols="30"></textarea></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2"><input type="submit" value="Submit">&nbsp&nbsp<input type="reset" value="Cancel"></td>
+        </tr>
+        </table>
+        <br>
+        <br>
+        
+        <table  cellpadding="20px"  align="center" bgcolor="white" >
+            <tr>
+                <th><center>Sl.No</center></th>
+                <th><center>Date</center></th>
+                <th><center>Title</center></th>
+                <th><center>Content</center></th>
+                <th><center>Technician Name</center></th>
+                <th><center>Reply</center></th>
+                <th><center>Action</center></th>
+            </tr> 
+           {% for i in res %}
+            <tr>
+                <td><center>{{forloop.counter}}</center></td>
+                <td><center>{{i.complaint_date}}</center></td>
+                <td><center>{{i.complaint_title}}</center></td>
+                <td><center>{{i.complaint_content}}</center></td>
+                <td><center>{{i.technician.technician_name}}</center></td>
+                <td><center>{{i.complaint_reply}}</center></td>
+                <td><center><a href="{% url 'webuser:delcomplaint' i.id %}">Delete</a></center> </td>
+            </tr>
+           {% endfor %}      
+            </table>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+    </form>
+    </div>
+</body>
+</html>
+{% endblock content %}

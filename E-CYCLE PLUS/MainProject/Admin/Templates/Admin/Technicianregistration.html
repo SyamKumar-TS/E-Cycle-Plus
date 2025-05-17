@@ -1,0 +1,75 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+    <form method="post" id="RegFormTech"  enctype="multipart/form-data">
+        {% csrf_token %}
+    <table border="1" align="center">
+        <tr>
+            <th colspan="2">Technician Registration</th>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" name="txt_name" autocomplete="off" required="required"></td>
+        </tr> 
+        <tr>
+            <td>Gender:</td>
+            <td><input type="radio" name="rad_gender" value="male" required="required">Male&nbsp;&nbsp;<input type="radio" name="rad_gender" value="female">Female</td>
+        </tr>  
+        <tr>
+            <td>Contact:</td>
+            <td><input type="text" name="txt_num" autocomplete="off" placeholder="+91" pattern="[0-9]{10}" required="required"></td>
+        </tr>  
+        <tr>
+            <td>Email:</td>
+            <td><input type="email" name="txt_email" required="required"></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="txt_pass"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required></td>   
+        </tr>  
+        <tr>
+            <td>Photo:</td>
+            <td><input type="file" name="file_photo" required="required"></td>
+        </tr>  
+        <tr>
+            <td>Skill On :</td>
+            <td><select name="ddl_cat" id="cate">
+                <option value="">--SELECT--</option>
+                {% for i in cat %}
+                <option value="{{i.id}}">{{i}}</option>
+                {% endfor %}
+                </select></td>
+        </tr> 
+        <tr>
+            <td>Experience:</td>
+            <td><input type="text" name="txt_experience" required="required"></td>
+        </tr> 
+        <tr>
+            <td>Address:</td>
+            <td><textarea name="txt_address" placeholder="Your Address Here" rows="4" cols="40" required="required"></textarea></td>
+        </tr> 
+        <tr>
+            <td colspan="2"><center><input type="submit" name="btn_submit">&nbsp;&nbsp;<input type="reset" name="btn_cancel" value="Cancel"></center></td>
+        </tr>  
+    </table>
+    </form>   
+</div> 
+<script>
+    {% if msg %}
+    alert("{{msg}}")
+    // window.location="" 
+    {% endif %}
+  </script>  
+</body>
+</html>
+{% endblock content %}

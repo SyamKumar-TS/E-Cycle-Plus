@@ -1,0 +1,52 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+    <!-- <center><h1><i>Accepted Service Bookings List</i></h1></center> -->
+    <table border="1" align="center">
+        <tr>
+            <th colspan="10"><i><center>Accepted Service Bookings List</center></i></th>
+            </tr>
+        <tr>
+            <th>Sl.No</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>Details</th>
+            <th>Username</th>
+            <th>Address</th>
+            <th colspan="2">Action</th>
+        </tr> 
+       {% for i in res %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.Servicebook_date}}</td>
+            <td>{{i.category.category_name}}</td>
+            <td>{{i.brand.brand_name}}</td>
+            <td>{{i.Servicebook_details}}</td>
+            <td>{{i.user.user_name}}</td>
+            <td>{{i.Servicebook_address}}</td>
+            <td>
+                {% if i.Servicebook_status == 3 %}
+                <p><font color="red">Already Allocated</font></p>
+                {% else %}
+                <a href="{% url 'webadmin:assignserv' i.id %}">Allocate</a>
+                {% endif %}
+            </td>
+            <td><a href="{% url 'webadmin:delservice' i.id %}">Delete</a></td>
+        </tr>
+       {% endfor %}      
+    </table>
+    </div>
+</body>
+</html>
+{% endblock content %}

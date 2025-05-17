@@ -1,0 +1,58 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head><div id="tab" >
+<body>
+ 
+    
+        <br>
+      
+        <table cellpadding="50" style="border-collapse: collapse" id="result">
+            <tr>
+                {% for i in res %}
+
+                <td>
+                    <div style="text-align:center;border:1px solid black;margin:22px;padding:20px">
+
+                        <p><img src="{{i.product_image.url}}" width="200" height="200"></p>
+                        <br>
+                        <p><b>Name:</b>{{i.Product_name}}</p>
+                        <br>
+                        
+                        <p><b>Description:</b><br>{{i.Product_description}}</p>
+                        <br>
+
+                     
+                        <br>
+
+                        <p><b>Product Type:</b><font color="red">{{i.type.type_name}}</font></p>
+                        <br>
+                        <p><b>Buy On Call:</b><font color="blue">&nbsp;&nbsp;0484 2749988</font></p>
+                        <br>
+                        
+                    </div>
+                </td>
+                {% if forloop.counter|divisibleby:4 %}
+            </tr>
+            <tr>
+                {% endif %}
+
+
+                {% endfor %}
+               
+
+        </table>
+   
+ 
+</body>
+</div>
+</html>
+{% endblock content %}

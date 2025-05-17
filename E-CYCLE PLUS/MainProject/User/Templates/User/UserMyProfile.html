@@ -1,0 +1,48 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- <h1 align="center">User MyProfile</h1> -->
+    <table border="1" align="center" cellpadding="10" style="border-collapse: collapse;" bgcolor="white">
+        <tr>
+            <th colspan="4"><center>User MyProfile</center></th>
+        </tr>
+        <tr>
+            <td align="center" colspan="2"><img src="{{data.user_photo.url}}" width="150" height="150"  style="border-radius: 75px;"></td>
+            
+        </tr>
+        <tr>
+            <td><b>Name:</b></td>
+            <td>{{data.user_name}}</td>
+        </tr>
+        <tr>
+            <td><b>Contact:</b></td>
+            <td>{{data.user_contact}}</td>
+        </tr>
+        <tr>
+            <td><b>Email:</b></td>
+            <td>{{data.user_email}}</td>
+        </tr>
+        <tr >
+            <td><b>Address:</b></td>
+            <td>{{data.user_address}}</td>
+        </tr>
+    </table>
+    </div>
+</body>
+</html>
+{% endblock content %}

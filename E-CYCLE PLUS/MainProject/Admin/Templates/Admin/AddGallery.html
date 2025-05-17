@@ -1,0 +1,35 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+    <form method="post" id=""  enctype="multipart/form-data">
+        {% csrf_token %}
+    <table border="1" align="center">
+        <tr>
+            <th colspan="2">Add Gallery Images</th>
+        </tr>
+        <tr>
+            <td>Product Name:</td>
+            <td>{{res.Product_name}}</td>
+        </tr>
+        <tr>
+            <td>Product Image:</td>
+            <td><input type="file" name="file_photo"></td>
+        </tr>  
+        <tr>
+            <td colspan="2"><center><input type="submit" name="btn_submit"></center></td>
+        </tr>  
+    </table>
+    </form>    
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="tab">
+    <form action="" method="POST" >
+        {% csrf_token %}
+    <table border="1" align="center" cellpadding="10" style="border-collapse: collapse;" bgcolor="white">
+        <tr>
+            <th colspan="2" align="center"><i><b><center>User Feedback</center></b></i></th>
+        </tr>
+        <tr>
+            <td>Content:</td>
+            <td><textarea id="txt_content" name="txt_content" required="" autocomplete="off" rows="5" cols="30" placeholder="Please enter your feedbacks regarding the FYG"></textarea></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2"><input type="submit" value="Submit">&nbsp&nbsp<input type="reset" value="Cancel"></td>
+        </tr>
+    </form>
+    </div>
+</body>
+</html>
+{% endblock content %}

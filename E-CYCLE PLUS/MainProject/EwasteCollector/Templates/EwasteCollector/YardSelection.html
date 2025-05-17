@@ -1,0 +1,150 @@
+{% extends 'EwasteCollector/Head.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Waste Yard Selection</title>
+    <style>
+        .card-table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        .card-table th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            text-align: center;
+        }
+        .card-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .card-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .btn-submit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .btn-reset {
+            background-color: #f44336;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .required {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <br><br><br><br><br>
+    <div id="tab">
+    <form method="post">
+        {% csrf_token %}
+        <table class="card-table">
+            <tr>
+                <th colspan="5"><i>Select The Yard You Dumped The Waste</i></th>    
+            </tr>
+            <tr>
+                <td>User's Name:</td>
+                <td>{{res.ewastebooking.user.user_name}}</td>
+            </tr>
+            <tr>
+                <td>User's Contact:</td>
+                <td>{{res.ewastebooking.user.user_contact}}</td>
+            </tr>
+            <tr>
+                <td>Collection Details:</td>
+                <td>{{res.ewastebooking.ewastebooking_details}}</td>
+            </tr>
+            <tr>
+                <td>Collected Address:</td>
+                <td>{{res.ewastebooking.ewastebooking_collectionpoint}}</td>
+            </tr>
+            <tr>
+                <td>Select Yard:</td>
+                <td>
+                    <select name="ddl_yard" required>
+                        <option value="">--SELECT--</option>
+                        {% for i in y %}
+                        <option value="{{i.id}}">{{i}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Ewaste Total Weight (<span class="required">per kg</span>):</td>
+                <td><input type="text" name="txt_weight" required></td>
+            </tr>
+            <tr>
+                <td>Recyclable E-waste Weight (<span class="required">per kg</span>):</td>
+                <td><input type="text" name="txt_recyclable_weight" required></td>
+            </tr>
+            <tr>
+                <td>Non-Recyclable E-waste Weight (<span class="required">per kg</span>):</td>
+                <td><input type="text" name="txt_nonrecyclable_weight" required></td>
+            </tr>
+            <tr>
+                <td>Rate per kg (₹):</td>
+                <td><input type="text" name="txt_rate" required></td>
+            </tr>
+            <tr>
+                <td>Total Amount Paid (₹):</td>
+                <td><input type="text" name="txt_total_amount" readonly></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="btn_submit" value="Done" class="btn-submit"> 
+                    <input type="reset" name="btn_reset" value="Reset" class="btn-reset">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br><br><br><br><br><br><br><br><br>
+    </div>
+
+    <script>
+        // Auto-calculate total amount based on weights and rate
+        document.addEventListener('DOMContentLoaded', function() {
+            const recycleWeightInput = document.querySelector('input[name="txt_recyclable_weight"]');
+            const nonRecycleWeightInput = document.querySelector('input[name="txt_nonrecyclable_weight"]');
+            const rateInput = document.querySelector('input[name="txt_rate"]');
+            const totalWeightInput = document.querySelector('input[name="txt_weight"]');
+            const totalAmountInput = document.querySelector('input[name="txt_total_amount"]');
+            
+            function updateTotalWeight() {
+                const recycleWeight = parseFloat(recycleWeightInput.value) || 0;
+                const nonRecycleWeight = parseFloat(nonRecycleWeightInput.value) || 0;
+                totalWeightInput.value = (recycleWeight + nonRecycleWeight).toFixed(2);
+                updateTotalAmount();
+            }
+            
+            function updateTotalAmount() {
+                const totalWeight = parseFloat(totalWeightInput.value) || 0;
+                const rate = parseFloat(rateInput.value) || 0;
+                totalAmountInput.value = (totalWeight * rate).toFixed(2);
+            }
+            
+            recycleWeightInput.addEventListener('input', updateTotalWeight);
+            nonRecycleWeightInput.addEventListener('input', updateTotalWeight);
+            rateInput.addEventListener('input', updateTotalAmount);
+        });
+    </script>
+</body>
+</html>
+{% endblock content %}
